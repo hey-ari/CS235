@@ -2,18 +2,20 @@
 if (( $# == 2 ))
 then
 
-old_suffix=$1
-new_suffix=$2
+    old_suffix=$1
+    new_suffix=$2
     
-for f in *.$old_suffix
-
-if [[ -e /s/chopin/g/under/shamraev/${f%.*}.$new_suffix ]]
-then
-    echo "ERROR! A file with such name already exists." >&2
-    else
-do
-    new_name=${f%.*}.$new_suffix
-    echo Rename $f to $new_name
+    for f in *.$old_suffix
+    do
+        new_name=${f%.*}.$new_suffix
+        if [[ -e $new_name ]]
+        then
+        echo "ERROR! " >&2
+       
+        exit 1
+        fi
+        
+        echo Rename $f to $new_name
     done
 else
     echo "ERROR! ENTER 2 ARGUMENTS. NOT MORE NOT LESS." >&2
