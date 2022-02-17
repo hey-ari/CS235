@@ -22,61 +22,62 @@
 #  2) Command:  make
 #     Question: Describe what happens.  Don’t just write the commands;
 #     		describe what each command does.
-#     Answer:   
+#     Answer:   The make command compiles and then links the files making an executable.
 #
 #  3) Command:  ./small
 #     Question: What is the output?  Reproduce the output exactly.
-#     Answer:   
+#     Answer:   Hi from main at main.cc:15
+		Hi from foo at foo.cc:14
 #
 #  4) Command:  make
 #     Question: Why did nothing much happen?
-#     Answer:   
+#     Answer:   No changes to the source files meaning make says that small is currently up to date, therefore no changes need to be done. 
 #
 #  5) Command:  rm small; make
 #     Question: What got remade, and why?
-#     Answer:   
+#     Answer:   The command removed small and ran make over again, small is remade.
 #
 #  6) Command:  rm foo.o; make
 #     Question: What got remade, and why?
-#     Answer:   
+#     Answer:   foo.o is removed, and the entire program got remade, .o file and small exec file
 #
 #  7) Command:  make clean
 #     Question: What did that do?
-#     Answer:   
+#     Answer:   make was ran but the file with extencion .o got removed as unnecessary.
 #
 #  8) Command:  make
 #     Question: What got remade, and why?
-#     Answer:   
+#     Answer:   make got ran and the rogram was fully remade.
 #
 #  9) Question: Why does main.o depend on foo.h?
 #		I know that it’s because the Makefile says so.
 #		Why was that dependency put into the Makefile?
-#     Answer:   
+#     Answer:   main.o depends on foo.h because the delcaration .h (header) file is important and declares something we need.
 #
 # 10) Command:  Create a new function bar() in bar.cc & bar.h,
 # 		similar to foo.cc.  Change main.cc to call the new
 # 		bar() function, make sure to #include the proper .h
 # 		files everywhere, and type “make”.  Don’t alter Makefile.
 #     Question: Why did it fail?
-#     Answer:   
+#     Answer:   Makefile doesn't specify the bar.* files.
 #
 # 11) Command:  Fix the Makefile; verify with “make” until it compiles.
 #     Question: Describe your changes.  Don’t just show the changed
 #     		lines--describe the purpose of each change.
-#     Answer:   
+#     Answer:   The Makefile was fixed to have 'bar' instead of 'foo'.
 #
 # 12) Command:  Uncomment the CXXFLAGS= line, and type “make”.
 #     Question: Why didn't anything happen?
-#     Answer:   
+#     Answer:   No changes were made to a source file.
 #
 # 13) Command:  Force a rebuild with: make clean; make
 #     Question: What’s new about the commands executed?
-#     Answer:   
+#     Answer:   A lot of additional red flags.
 #
 # 14) Command: 	make clean; ls -l clean
 #     Question: The target is “clean”, but no file “clean” got created.
 #     		Why not?
-#     Answer:   
+#     Answer:   clean is a command, therefore it will not create a file named "clean."
 #
 # For extra fame & glory (but no extra points):
 #
@@ -89,16 +90,16 @@
 # have plus signs in a Make variable, so X is a rotated plus sign.
 CXX=g++
 
-# CXXFLAGS=-std=c++17 -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option
+CXXFLAGS=-std=c++17 -Wall -Wextra -Wpedantic -Werror -Wfatal-errors -Winit-self -Wshadow -Wlogical-op -Wcomment -Wctor-dtor-privacy -Wold-style-cast -D_GLIBCXX_DEBUG -fno-diagnostics-show-option
 
-small: main.o foo.o
-	$(CXX) $(CXXFLAGS) main.o foo.o -o small
+small: main.o bar.o
+	$(CXX) $(CXXFLAGS) main.o bar.o -o small
 
-main.o: main.cc foo.h
+main.o: main.cc bar.h
 	$(CXX) $(CXXFLAGS) -c main.cc
 
-foo.o: foo.cc foo.h
-	$(CXX) $(CXXFLAGS) -c foo.cc
+bar.o: bar.cc bar.h
+	$(CXX) $(CXXFLAGS) -c bar.cc
 
 clean:
 	-rm -f small *.o
