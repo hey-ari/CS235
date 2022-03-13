@@ -1,5 +1,5 @@
-DISCLAIMER:
-The information provided and lab contents are ONLY for my personal job searching purposes. One MAY NOT use any files to submit as their own, this will be consideed as cheating and punished as such.
+<b><header>DISCLAIMER:
+The information provided and lab contents are ONLY for my personal job searching purposes. One MAY NOT use any files to submit as their own, this will be consideed as cheating and punished as such. </b><header>
 
 <b>Description</b>
 
