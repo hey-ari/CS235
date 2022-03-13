@@ -24,7 +24,7 @@ In this lab, we will use gcov to:
 
 2. You will modify Date.cc and main.cc, wrap them up in a tar file, and turn them in for credit. Take a minute or two to look at the code, including the test cases in main().
 
-3.Build the code; note the interesting g++ options used:
+3. Build the code; note the interesting g++ options used:
 <i>make</i>
 
 4. Run the code:
