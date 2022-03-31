@@ -1,0 +1,32 @@
+1.	New returns a void* because void* can be cast to any other type of pointer.
+
+ 2a1. The default new is called because double* isn’t a Foo class type
+        2a2. The class specific new is called because Foo* is a class and there exists a static method new for Foo.
+        2a3. The class specific new is called since Foo* is a class and there exists a static method new for Foo.
+         2a4. The default delete is called because double isn’t a Foo class type
+         2a5. The class specific delete is called because q is an instance of the Foo class and there exists a delete method for the Foo class.
+         2a6. The class specific delete is called because q is an instance of the Foo class and there exists a delete method for the Foo class.
+         2b. They’re static so we call them even if there is not an instance of Foo.
+
+3.	It doesn’t compile since new is private and can only be accessed from within the class.
+
+4.	It does not compile because the new operator was deleted and does not exist for the class.
+
+5.	ctor and dtor are protected therefore ONLY direct subclasses have an access to them.
+
+6.	This caused by attempting to delete a local variable, could improve by keeping a counter, and print an error message instead of exit(1).
+
+7.	The best option would be ! since it isn’t an int, pointer, double, or string that are valid, a string that consists of just ! is an extremely rare occurance.
+
+8a. The size of Foo is 8.
+8b. Difference of hex20 or decimal 32. New doesn’t guarantee memory is next to be a previous call in the memory.
+8c. The size of Bar 8.
+8d. The difference is 8 since the implementation of the linked list guarantees the memory to be next to each other.
+
+9a. If new and delete are defined as nonprivate, Bar will inherit the redefined versions.
+9b. If sizeof(bar) > sizeof(foo), the program won’t work.
+9c. Fix this in bar as static void *Bar::operator new = default, as such for delete.
+
+10. normal takes 0.27 and pool takes 0.07, thus 0.27:0.07. Because normal must allocate new memory each time, pool allocated a large segment of memory occasionally and keeps a linked list of free to use nodes. 
+
+11. normal takes 315624 and pool takes 81600, thus 315624:81600. Because of the use of union instead of struct where union only stores what is required for valid data and struct stores everything.
